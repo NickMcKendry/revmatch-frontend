@@ -131,9 +131,9 @@ const styles = StyleSheet.create({
   },
 
   titleText : {
-    fontFamily: 'Snell Roundhand',
-    fontSize: 60,
-    color: '#00D9C0'
+    fontFamily: 'SnellRoundhand-Black',
+    fontSize: 80,
+    color: '#00D9C0',
   }
 
 

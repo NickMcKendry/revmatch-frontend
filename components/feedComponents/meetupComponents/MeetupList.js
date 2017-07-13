@@ -16,6 +16,7 @@ const MeetupList = ({ meetups }) => (
 
             <View style={styles.meetupCardTopContainer}>
               <Text style={styles.meetupCardTitle}>{meetup.title}</Text>
+              <Text style={styles.cardDescription}>{meetup.description}</Text>
             </View>
 
             <View style={styles.meetupCardBottom}>
@@ -84,14 +85,15 @@ const styles = StyleSheet.create({
   meetupCardTitle: {
     position: 'absolute',
     color: '#00D9C0',
-    fontFamily: 'Futura-MediumItalic'
+    fontFamily: 'Futura-MediumItalic',
+    borderBottomWidth: 2
   },
 
   meetupCardTopContainer : {
     flex: 1,
     position: 'relative',
     top: 4,
-    left: 3
+    left: 3,
   },
 
   meetupCardBottom : {
@@ -99,6 +101,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#00D9C0',
     justifyContent: 'center',
     paddingHorizontal: 4,
+  },
+
+  cardDescription : {
+    top: 25,
+    backgroundColor: 'transparent',
+
   }
 })
 
