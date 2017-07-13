@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from '
 import { MeetupApi } from '../../constants/api'
 import MeetupList from './meetupComponents/MeetupList'
 
+
 import LoadingScreen from '../LoadingScreen'
 
 
@@ -38,8 +39,10 @@ export default class Meetups extends Component {
 
   async componentDidMount() {
     this.setState({ loading: true })
-    const meetups =  this.props.meetupApi.fetchGroupMeetups()
+    const meetups =  await this.props.meetupApi.fetchGroupMeetups()
+    console.log('meetups var', meetups);
     this.setState({ loading: false, meetups })
+    console.log('this.state',this.state);
   }
 
   goToHome(){
@@ -80,16 +83,18 @@ export default class Meetups extends Component {
     if(this.state.loading){
       console.log(this.state.loading);
         return <LoadingScreen />
+    } else {
+      console.log('meetups', this.state.meetups);
     }
 
 
     return(
-      <View style={styles.container}>
+      <Image source={require('./meetupComponents/meetups.png')} style={styles.container}>
 
         <SmallHeader />
 
         <View style={styles.topContainer}>
-          <Text >Meetups</Text>
+          <Text style={styles.titleText}>Meetups</Text>
         </View>
         <View style={styles.bottomContainer}>
           <MeetupList meetups={this.state.meetups} />
@@ -98,7 +103,7 @@ export default class Meetups extends Component {
 
         <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} />
 
-      </View>
+      </Image>
     )
   }
 }
@@ -107,7 +112,7 @@ const styles = StyleSheet.create({
 
 
   container: {
-    backgroundColor: '#FCF7FF',
+    backgroundColor: 'transparent',
     flex: 1,
     justifyContent: "space-between",
   },
@@ -122,6 +127,13 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     flex: 0.8,
+    backgroundColor: '#A1A6AB'
+  },
+
+  titleText : {
+    fontFamily: 'Snell Roundhand',
+    fontSize: 60,
+    color: '#00D9C0'
   }
 
 

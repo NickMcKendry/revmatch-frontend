@@ -14,7 +14,7 @@ class MeetupApi {
   async fetchGroupMeetups(){
     console.log(this);
     const { data } = await axios.get(this.path)
-    console.log('data', data);
+    console.log('apicall', data);
     return data.meetups
   }
 
