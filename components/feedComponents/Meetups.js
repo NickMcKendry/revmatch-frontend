@@ -1,28 +1,48 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from 'react-native';
 
+import { MeetupApi } from '../../constants/api'
+
 
 
 import SmallHeader from './SmallHeader'
 import Footer from './Footer'
 
-import Market from './Market'
+
+import Feed from '../Feed'
+
 import Profile from './Profile'
 import Search from './Search'
 
+const meetupApi = new MeetupApi()
 
-export default class Home extends Component {
+export default class Meetups extends Component {
   constructor(){
     super()
     this.goToHome = this.goToHome.bind(this)
     this.goToSearch = this.goToSearch.bind(this)
     this.goToProfile = this.goToProfile.bind(this)
-    this.goToMarket = this.goToMarket.bind(this)
+    this.goToMeetup = this.goToMeetup.bind(this)
+  }
+
+  static defualtProps = {
+    meetupApi
+  }
+
+  state = {
+    loading: false,
+    meetups: []
+  }
+
+  async componentDidMount() {
+    this.setState({ loading: true })
+    const meetups =  this.props.meetupApi.fetchGroupMeetups()
+    this.setState({ loading: false, meetups })
   }
 
   goToHome(){
     this.props.navigator.push({
-      component: Home,
+      component: Feed,
       navigationBarHidden: true,
     })
   }
@@ -43,13 +63,15 @@ export default class Home extends Component {
     })
   }
 
-  goToMarket(){
+  goToMeetup(){
     this.props.navigator.push({
-      component: Market,
+      component: Meetups,
       navigationBarHidden: true,
 
     })
   }
+
+
 
 
   render(){
@@ -59,11 +81,11 @@ export default class Home extends Component {
         <SmallHeader />
 
         <View>
-          <Text style={styles.text}>Home</Text>
+          <Text style={styles.text}>Meetups</Text>
         </View>
 
 
-        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMarket={this.goToMarket} />
+        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} />
 
       </View>
     )
@@ -74,12 +96,10 @@ const styles = StyleSheet.create({
 
 
   container: {
-    height: "50%",
-    backgroundColor: 'blue',
+    backgroundColor: '#FCF7FF',
     flex: 1,
     justifyContent: "space-between",
   },
-
   text: {
     justifyContent: 'center',
     fontSize: 100

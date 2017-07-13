@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from 'react-native';
 
 
-import Home from './feedComponents/Home'
-import Market from './feedComponents/Market'
+
+
+import Meetups from './feedComponents/Meetups'
 import Search from './feedComponents/Search'
 import Profile from './feedComponents/Profile'
 
@@ -17,12 +18,14 @@ export default class Feed extends Component {
     this.goToHome = this.goToHome.bind(this)
     this.goToSearch = this.goToSearch.bind(this)
     this.goToProfile = this.goToProfile.bind(this)
-    this.goToMarket = this.goToMarket.bind(this)
+    this.goToMeetup = this.goToMeetup.bind(this)
   }
+
+
 
   goToHome(){
     this.props.navigator.push({
-      component: Home,
+      component: Feed,
       navigationBarHidden: true,
     })
   }
@@ -43,9 +46,9 @@ export default class Feed extends Component {
     })
   }
 
-  goToMarket(){
+  goToMeetup(){
     this.props.navigator.push({
-      component: Market,
+      component: Meetups,
       navigationBarHidden: true,
 
     })
@@ -53,15 +56,20 @@ export default class Feed extends Component {
 
 
   render(){
+
+
     return(
       <View style={styles.container}>
+
+
 
         <SmallHeader />
 
 
 
 
-        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMarket={this.goToMarket} />
+
+        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} />
 
       </View>
     )

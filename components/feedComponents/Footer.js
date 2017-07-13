@@ -19,7 +19,7 @@ export default class Footer extends Component {
           <TouchableHighlight onPress={this.props.goProfile}>
             <Image style={styles.img} source={require('../logos/smallwheel.png')} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={this.props.goMarket}>
+          <TouchableHighlight onPress={this.props.goMeetup}>
             <Image style={styles.img} source={require('../logos/wrench.png')} />
           </TouchableHighlight>
         </View>

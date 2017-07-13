@@ -25,7 +25,7 @@ export default class SignUp extends React.Component {
 
 
     return (
-      <View style={styles.container}>
+      <Image style={styles.background} source={require('./bg.png')}>
         <Header />
         <View style={styles.Login}>
           <TextInput
@@ -50,7 +50,7 @@ export default class SignUp extends React.Component {
             onPress={() => this.goToFeed()}
            />
         </View>
-      </View>
+      </Image>
     );
   }
 }
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
 
-    backgroundColor: '#000',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
 
   Login: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     flex: 9,
     width: '100%',
     alignItems: 'center',
@@ -83,5 +83,14 @@ const styles = StyleSheet.create({
     padding: 5,
 
   },
+
+  background: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    justifyContent: 'center',
+    opacity: 1
+
+  }
 
 })

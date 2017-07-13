@@ -6,7 +6,10 @@ import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from '
 import SmallHeader from './SmallHeader'
 import Footer from './Footer'
 
-import Market from './Market'
+
+import Feed from '../Feed'
+
+import Meetups from './Meetups'
 import Profile from './Profile'
 import Search from './Search'
 
@@ -16,12 +19,12 @@ export default class Home extends Component {
     this.goToHome = this.goToHome.bind(this)
     this.goToSearch = this.goToSearch.bind(this)
     this.goToProfile = this.goToProfile.bind(this)
-    this.goToMarket = this.goToMarket.bind(this)
+    this.goToMeetup = this.goToMeetup.bind(this)
   }
 
   goToHome(){
     this.props.navigator.push({
-      component: Home,
+      component: Feed,
       navigationBarHidden: true,
     })
   }
@@ -42,9 +45,9 @@ export default class Home extends Component {
     })
   }
 
-  goToMarket(){
+  goToMeetup(){
     this.props.navigator.push({
-      component: Market,
+      component: Meetups,
       navigationBarHidden: true,
 
     })
@@ -64,7 +67,7 @@ export default class Home extends Component {
         </View>
 
 
-        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMarket={this.goToMarket} />
+        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} />
 
       </View>
     )
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       fontSize: 100
     }
-  
+
 
 
 

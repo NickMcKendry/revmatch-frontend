@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 
   },
   Header: {
-    backgroundColor: '#030301',
+    backgroundColor: 'transparent',
     flex: 1,
     width: '100%',
 

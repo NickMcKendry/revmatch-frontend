@@ -8,6 +8,7 @@ import Header from './Header'
 import SignUp from './SignUp'
 
 
+
 export default class LogIn extends React.Component {
 
 
@@ -35,32 +36,38 @@ export default class LogIn extends React.Component {
 
 
     return (
-      <View style={styles.container}>
-        <Header />
-        <View style={styles.Login}>
-          <TextInput
-            placeholder="UserName"
-            style={styles.input} />
-          <TextInput
-            placeholder="Password"
-            secureTextEntry={true}
-            style={styles.input} />
-          <Button
-            title="Log In"
-            color="#00D9C0"
-            onPress={() => this.goToFeed()}
-           />
+          <Image style={styles.background} source={require('./bg.png')}>
 
-        </View>
-        <View style={styles.newAccount}>
-          <Button
-            title="Need an account? Sign up here!"
-            color="#030301"
-            style={styles.newAccountButton}
-            onPress={() => this.goToSignUp()}
-          />
-        </View>
-      </View>
+          <View style={styles.Login}>
+
+            <Header />
+
+            <TextInput
+              placeholder="UserName"
+              style={styles.input} />
+            <TextInput
+              placeholder="Password"
+              secureTextEntry={true}
+              style={styles.input} />
+            <Button
+              title="Log In"
+              color="#00D9C0"
+              onPress={() => this.goToFeed()}
+            />
+
+          </View>
+          <View style={styles.newAccount}>
+            <Button
+              title="Need an account? Sign up here!"
+              color="#00D9C0"
+              style={styles.newAccountButton}
+              onPress={() => this.goToSignUp()}
+            />
+
+          </View>
+        </Image>
+
+
     );
   }
 }
@@ -69,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: -50,
-    backgroundColor: '#00D9C0',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
 
@@ -78,12 +85,13 @@ const styles = StyleSheet.create({
 
 
   Login: {
-    backgroundColor: '#030301',
+    backgroundColor: 'transparent',
     flex: 10,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
+    opacity: 1
 
   },
 
@@ -94,7 +102,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     textAlign: 'center',
     color: '#5CE6D6',
-    marginTop: 15
+    backgroundColor: 'black',
+    opacity: .9,
+    marginTop: 15,
+
   },
 
   button: {
@@ -105,13 +116,27 @@ const styles = StyleSheet.create({
 
   newAccount: {
     height: 100,
-    width: 500
+    width: 500,
+    backgroundColor: 'transparent',
+    alignSelf: 'center'
   },
 
   newAccountButton: {
+    alignSelf: 'center',
     width: 100,
-    height: 100
+    height: 100,
+    color: '#5CE6D6'
   },
+
+  background: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    backgroundColor: "#030301",
+    justifyContent: 'center',
+    opacity: 1
+
+  }
 
 
 

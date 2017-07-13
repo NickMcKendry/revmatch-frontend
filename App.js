@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS, ActivityIndicator } from 'react-native';
 import LogIn from './components/LogIn'
 import Header from './components/Header'
+
+
 
 export default class App extends React.Component {
 
 
+
+
   render(){
+    
     return(
       <View style={styles.container}>
         <NavigatorIOS
