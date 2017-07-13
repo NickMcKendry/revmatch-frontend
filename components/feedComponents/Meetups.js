@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from 'react-native';
 
 import { MeetupApi } from '../../constants/api'
+import MeetupList from './meetupComponents/MeetupList'
 
+import LoadingScreen from '../LoadingScreen'
 
 
 import SmallHeader from './SmallHeader'
@@ -10,11 +12,11 @@ import Footer from './Footer'
 
 
 import Feed from '../Feed'
-
 import Profile from './Profile'
 import Search from './Search'
 
-const meetupApi = new MeetupApi()
+const meetupApi = new MeetupApi();
+console.log(meetupApi);
 
 export default class Meetups extends Component {
   constructor(){
@@ -25,7 +27,7 @@ export default class Meetups extends Component {
     this.goToMeetup = this.goToMeetup.bind(this)
   }
 
-  static defualtProps = {
+  static defaultProps = {
     meetupApi
   }
 
@@ -75,13 +77,22 @@ export default class Meetups extends Component {
 
 
   render(){
+    if(this.state.loading){
+      console.log(this.state.loading);
+        return <LoadingScreen />
+    }
+
+
     return(
       <View style={styles.container}>
 
         <SmallHeader />
 
-        <View>
-          <Text style={styles.text}>Meetups</Text>
+        <View style={styles.topContainer}>
+          <Text >Meetups</Text>
+        </View>
+        <View style={styles.bottomContainer}>
+          <MeetupList meetups={this.state.meetups} />
         </View>
 
 
@@ -103,6 +114,14 @@ const styles = StyleSheet.create({
   text: {
     justifyContent: 'center',
     fontSize: 100
+  },
+  topContainer : {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomContainer: {
+    flex: 0.8,
   }
 
 

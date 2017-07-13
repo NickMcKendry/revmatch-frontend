@@ -19,7 +19,7 @@ import {
  } from 'react-native';
 
 
-class Rotating extends Component {
+export class Rotating extends Component {
   constructor(props){
     super(props)
     this.spinValue = new Animated.Value(0)
