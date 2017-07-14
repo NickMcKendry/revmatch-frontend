@@ -15,15 +15,29 @@ class MeetupApi {
     console.log(this);
     const { data } = await axios.get(this.path)
     console.log('apicall', data);
+    console.log('yoi', data.meetups);
     return data.meetups
   }
 
 }
 
-class postApi{
+class PostApi{
+  constructor(){
+    console.log(this);
+    this.path = '/posts'
+  }
 
+  async fetchPosts(){
+    console.log(this);
+    const { data } = await axios.get(this.path)
+    console.log('apicall', data);
+    console.log('yoi 2', data.posts);
+
+    return data.posts
+  }
 }
 
 export {
-  MeetupApi
+  MeetupApi,
+  PostApi
 }
