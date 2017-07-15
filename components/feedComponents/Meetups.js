@@ -4,29 +4,12 @@ import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from '
 import { MeetupApi } from '../../constants/api'
 import MeetupList from './meetupComponents/MeetupList'
 
-
+import SmallHeader from './SmallHeader'
 import LoadingScreen from '../LoadingScreen'
 
-
-import SmallHeader from './SmallHeader'
-import Footer from './Footer'
-
-
-import Feed from '../Feed'
-import Profile from './Profile'
-import Search from './Search'
-
 const meetupApi = new MeetupApi();
-console.log(meetupApi);
 
 export default class Meetups extends Component {
-  constructor(){
-    super()
-    this.goToHome = this.goToHome.bind(this)
-    this.goToSearch = this.goToSearch.bind(this)
-    this.goToProfile = this.goToProfile.bind(this)
-    this.goToMeetup = this.goToMeetup.bind(this)
-  }
 
   static defaultProps = {
     meetupApi
@@ -56,39 +39,6 @@ export default class Meetups extends Component {
     console.log('this.state',this.state);
   }
 
-  goToHome(){
-    this.props.navigator.push({
-      component: Feed,
-      navigationBarHidden: true,
-    })
-  }
-
-  goToSearch(){
-    this.props.navigator.push({
-      component: Search,
-      navigationBarHidden: true,
-
-    })
-  }
-
-  goToProfile(){
-    this.props.navigator.push({
-      component: Profile,
-      navigationBarHidden: true,
-
-    })
-  }
-
-  goToMeetup(){
-    this.props.navigator.push({
-      component: Meetups,
-      navigationBarHidden: true,
-
-    })
-  }
-
-
-
 
   render(){
     if(this.state.loading){
@@ -102,18 +52,12 @@ export default class Meetups extends Component {
     return(
       <Image source={require('./meetupComponents/meetups.png')} style={styles.container}>
 
-        {/* <SmallHeader /> */}
-
         <View style={styles.topContainer}>
           <Text style={styles.titleText}>Meetups</Text>
         </View>
         <View style={styles.bottomContainer}>
           <MeetupList meetups={this.state.meetups} />
         </View>
-
-
-        {/* <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} /> */}
-
       </Image>
     )
   }
@@ -152,9 +96,4 @@ const styles = StyleSheet.create({
     height: 'auto',
     flex: 1
   }
-
-
-
-
-
 })
