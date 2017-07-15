@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView, Image } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, Image, Button } from 'react-native'
 
 const PostList = ({ posts }) => (
   <View style={styles.container}>
@@ -7,15 +7,16 @@ const PostList = ({ posts }) => (
       {posts.map((post, i) => (
 
         <View key={i} style={styles.imgContainer}>
-          <Text style={styles.userText}>{post.author}</Text>
-
+          <View style={styles.userContainer}>
+            <View style={styles.thumbnail}></View>
+            <Text style={styles.userText}>{post.author}</Text>
+          </View>
           <Image style={styles.img} source={{uri: post.image}}></Image>
           <View style={styles.iconContainer}>
             <Image style={styles.likeIcon} source={require('./like-logo.png')}></Image>
             <Image style={styles.commentIcon} source={require('./comment-logo.png')}></Image>
           </View>
-          <Text>{post.description} </Text>
-
+          <Text style={styles.descText}>{post.description} </Text>
         </View>
 
       ))}
@@ -27,26 +28,31 @@ const PostList = ({ posts }) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FCF7FF',
+    backgroundColor: '#A1A6AB',
     top: 71,
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%'
+    width: '100%',
+    position: 'relative'
   },
 
   userText : {
-    fontSize: 20,
-    fontFamily: 'Futura-MediumItalic'
+    marginTop: 12,
+    fontSize: 15,
+    fontFamily: 'Futura-MediumItalic',
+
   },
 
   postCard: {
     flex: 1,
+    position: 'relative',
+    marginBottom: 68
   },
 
   imgContainer : {
     flex: 1,
     paddingHorizontal: 1,
-    backgroundColor: '#FCF7FF',
+    backgroundColor: '#A1A6AB',
     marginBottom: 5
 
   },
@@ -61,8 +67,24 @@ const styles = StyleSheet.create({
   },
 
   likeIcon : {
-    marginLeft: 15,
+    marginLeft: 3,
     marginRight: 10,
+  },
+
+  thumbnail : {
+    borderRadius: 50,
+    height: 30,
+    width: 30,
+    margin: 5,
+    backgroundColor: '#463F3A'
+  },
+
+  userContainer : {
+    flexDirection: 'row'
+  },
+
+  descText : {
+    margin: 5
   }
 })
 

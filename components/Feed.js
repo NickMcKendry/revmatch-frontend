@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    position: 'absolute'
+    position: 'relative'
   }
 
 

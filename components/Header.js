@@ -44,7 +44,7 @@ export class Rotating extends Component {
   render(){
     const spin = this.spinValue.interpolate({
       inputRange: [0, 1],
-      outputRange: ['0deg', '720deg']
+      outputRange: ['0deg', '2880deg']
     })
 
     return(

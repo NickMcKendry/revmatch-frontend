@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: "100%",
     backgroundColor: '#030301',
+    position: 'absolute'
   },
 
   topbartext: {

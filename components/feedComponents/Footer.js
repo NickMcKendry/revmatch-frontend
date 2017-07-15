@@ -30,7 +30,7 @@ export default class Footer extends Component {
 const styles = StyleSheet.create({
   bottombar: {
     flexDirection: 'row',
-    height: 60,
+    height: 40,
     width: '100%',
     backgroundColor: '#030301',
     alignSelf: 'flex-end',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
 
   img : {
-    width: 60,
+    width: 40,
     height: 'auto',
     flex: 1
   },
