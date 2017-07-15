@@ -13,10 +13,13 @@ const PostList = ({ posts }) => (
           </View>
           <Image style={styles.img} source={{uri: post.image}}></Image>
           <View style={styles.iconContainer}>
-            <Image style={styles.likeIcon} source={require('./like-logo.png')}></Image>
-            <Image style={styles.commentIcon} source={require('./comment-logo.png')}></Image>
+            <Image style={styles.likeIcon} source={require('./like-icon.png')}></Image>
+            <Image style={styles.commentIcon} source={require('./comment-icon.png')}></Image>
           </View>
-          <Text style={styles.descText}>{post.description} </Text>
+          <View style={styles.descContainer}>
+            <Text style={styles.descAuthor}>{post.author}</Text>
+            <Text style={styles.descText}>{post.description} </Text>
+          </View>
         </View>
 
       ))}
@@ -84,6 +87,15 @@ const styles = StyleSheet.create({
   },
 
   descText : {
+    margin: 5
+  },
+
+  descContainer: {
+    flexDirection: 'row'
+  },
+
+  descAuthor: {
+    fontWeight: 'bold',
     margin: 5
   }
 })
