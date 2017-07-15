@@ -83,7 +83,7 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 8,
     flexDirection: 'row'
 
   },

@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from '
 
 import Feed from './Feed'
 import Header from './Header'
+import Root from '../Root'
+
 
 
 
@@ -12,7 +14,7 @@ export default class SignUp extends React.Component {
 
   goToFeed(){
     this.props.navigator.push({
-      component: Feed,
+      component: Root,
       interactivePopGestureEnable: true,
       navigationBarHidden: true,
     })
@@ -71,7 +73,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     textAlign: 'center',
     color: '#5CE6D6',
-    marginTop: 15
+    marginTop: 15,
+    backgroundColor: 'black',
+    opacity: .9,
   },
 
   Login: {
