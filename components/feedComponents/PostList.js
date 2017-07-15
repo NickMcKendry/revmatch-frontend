@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView, Image, Button } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, Image, Button, TouchableHighlight } from 'react-native'
 
 const PostList = ({ posts }) => (
   <View style={styles.container}>
@@ -13,10 +13,18 @@ const PostList = ({ posts }) => (
           </View>
           <Image style={styles.img} source={{uri: post.image}}></Image>
           <View style={styles.iconContainer}>
-            <Image style={styles.likeIcon} source={require('./like-logo.png')}></Image>
-            <Image style={styles.commentIcon} source={require('./comment-logo.png')}></Image>
+            <TouchableHighlight>
+              <Image style={styles.likeIcon} source={require('./like-icon.png')}></Image>
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Image style={styles.commentIcon} source={require('./comment-icon.png')}></Image>
+            </TouchableHighlight>
           </View>
-          <Text style={styles.descText}>{post.description} </Text>
+          <View style={styles.descContainer}>
+            <Text style={styles.boldUser}>{post.author} </Text>
+            <Text style={styles.descText}>{post.description} </Text>
+          </View>
+
         </View>
 
       ))}
@@ -29,7 +37,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#A1A6AB',
-    top: 71,
+    top: 0,
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%',
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
   postCard: {
     flex: 1,
     position: 'relative',
-    marginBottom: 68
+    marginBottom: 18,
   },
 
   imgContainer : {
@@ -67,8 +75,10 @@ const styles = StyleSheet.create({
   },
 
   likeIcon : {
+    top: 3,
     marginLeft: 3,
     marginRight: 10,
+    height: 25
   },
 
   thumbnail : {
@@ -84,6 +94,21 @@ const styles = StyleSheet.create({
   },
 
   descText : {
+    margin: 5
+  },
+
+  commentIcon: {
+    top: 3,
+    height: 25
+
+  },
+
+  descContainer: {
+    flexDirection: 'row'
+  },
+
+  boldUser: {
+    fontWeight: 'bold',
     margin: 5
   }
 })

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from '
 export default class SmallHeader extends Component {
   render(){
     return(
-      <View>
+      <View style={styles.container}>
         <View style={styles.topbar}>
           <Text style={styles.topbartext}>Revmatch<Image source={require('../logofinal.png')} style={styles.img} /></Text>
         </View>
@@ -14,12 +14,15 @@ export default class SmallHeader extends Component {
 }
 
 const styles = StyleSheet.create({
+  container : {
+    flex: .1,
+    height: 1
+  },
+
   topbar: {
-    flex: 1,
-    height: 60,
+    flex: 0,
     width: "100%",
     backgroundColor: '#030301',
-    position: 'absolute'
   },
 
   topbartext: {
