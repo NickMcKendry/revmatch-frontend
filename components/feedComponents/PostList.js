@@ -98,24 +98,18 @@ const styles = StyleSheet.create({
     margin: 5
   },
 
-<<<<<<< HEAD
-=======
+
   commentIcon: {
     top: 3,
     height: 25
 
   },
 
->>>>>>> 0d45d5d22742e13dfdfdabf4fbe243812d69937c
   descContainer: {
     flexDirection: 'row'
   },
 
-<<<<<<< HEAD
-  descAuthor: {
-=======
   boldUser: {
->>>>>>> 0d45d5d22742e13dfdfdabf4fbe243812d69937c
     fontWeight: 'bold',
     margin: 5
   }

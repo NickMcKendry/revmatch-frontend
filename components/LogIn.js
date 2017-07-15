@@ -36,6 +36,7 @@ export default class LogIn extends React.Component {
 
 
     return (
+      
           <Image style={styles.background} source={require('./bg.png')}>
 
           <View style={styles.Login}>
