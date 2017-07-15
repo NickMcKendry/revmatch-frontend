@@ -4,6 +4,7 @@ import LogIn from './components/LogIn'
 import Header from './components/Header'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import Root from './Root'
 
 
 

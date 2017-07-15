@@ -31,6 +31,20 @@ export default class Feed extends Component {
     postApi
   }
 
+  static navigationOptions = {
+    header: () => (
+      <SmallHeader />
+    ),
+
+    tabBarIcon:  () => (
+        <Image source={require('../Icons/Garage-nav.png')} style={styles.img}></Image>
+      )
+
+
+
+
+  }
+
   state = {
     loading: false,
     posts: []
@@ -93,7 +107,7 @@ export default class Feed extends Component {
 
 
 
-        <SmallHeader style={styles.header} />
+        {/* <SmallHeader style={styles.header} /> */}
 
         <ScrollView>
           <View style={styles.postContainer}>
@@ -102,7 +116,7 @@ export default class Feed extends Component {
         </ScrollView>
 
 
-        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} />
+        {/* <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} /> */}
 
       </View>
     )
@@ -124,6 +138,12 @@ const styles = StyleSheet.create({
 
   header: {
     position: 'relative'
+  },
+
+  img : {
+    width: 50,
+    height: 'auto',
+    flex: 1
   }
 
 

@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from '
 import Feed from './Feed'
 import Header from './Header'
 import SignUp from './SignUp'
+import Root from '../Root'
 
 
 
@@ -14,7 +15,7 @@ export default class LogIn extends React.Component {
 
   goToFeed(){
     this.props.navigator.push({
-      component: Feed,
+      component: Root,
       interactivePopGestureEnable: true,
       navigationBarHidden: true,
 
@@ -36,7 +37,7 @@ export default class LogIn extends React.Component {
 
 
     return (
-      
+
           <Image style={styles.background} source={require('./bg.png')}>
 
           <View style={styles.Login}>
@@ -76,7 +77,6 @@ export default class LogIn extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: -50,
     backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
-    opacity: 1
+    opacity: 1,
+    height: 800
 
   },
 
@@ -130,13 +131,9 @@ const styles = StyleSheet.create({
   },
 
   background: {
-    flex: 1,
-    width: undefined,
-    height: undefined,
     backgroundColor: "#030301",
-    justifyContent: 'center',
-    opacity: 1
-
+    opacity: 1,
+    resizeMode: 'cover'
   }
 
 

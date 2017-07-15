@@ -22,6 +22,17 @@ export default class Home extends Component {
     this.goToMeetup = this.goToMeetup.bind(this)
   }
 
+  static navigationOptions = {
+    header: () => (
+      <SmallHeader />
+    ),
+
+    tabBarIcon:  () => (
+        <Image source={require('../../Icons/Wheel-nav.png')} style={styles.img}></Image>
+      )
+
+  }
+
   goToHome(){
     this.props.navigator.push({
       component: Feed,
@@ -58,14 +69,14 @@ export default class Home extends Component {
     return(
       <View style={styles.container}>
 
-        <SmallHeader />
+        {/* <SmallHeader /> */}
 
         <View>
           <Text style={styles.text}>Profile</Text>
         </View>
 
 
-        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} />
+        {/* <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} /> */}
 
       </View>
     )
@@ -85,6 +96,12 @@ const styles = StyleSheet.create({
   text: {
     justifyContent: 'center',
     fontSize: 100
+  },
+
+  img : {
+    width: 45,
+    height: 'auto',
+    flex: 1
   }
 
 

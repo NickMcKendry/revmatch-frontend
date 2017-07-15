@@ -32,6 +32,17 @@ export default class Meetups extends Component {
     meetupApi
   }
 
+  static navigationOptions = {
+    header: () => (
+      <SmallHeader />
+    ),
+
+    tabBarIcon:  () => (
+        <Image source={require('../../Icons/Meetups-Nav.png')} style={styles.img}></Image>
+      )
+
+  }
+
   state = {
     loading: false,
     meetups: []
@@ -91,7 +102,7 @@ export default class Meetups extends Component {
     return(
       <Image source={require('./meetupComponents/meetups.png')} style={styles.container}>
 
-        <SmallHeader />
+        {/* <SmallHeader /> */}
 
         <View style={styles.topContainer}>
           <Text style={styles.titleText}>Meetups</Text>
@@ -101,7 +112,7 @@ export default class Meetups extends Component {
         </View>
 
 
-        <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} />
+        {/* <Footer goHome={this.goToHome} goProfile={this.goToProfile} goSearch={this.goToSearch} goMeetup={this.goToMeetup} /> */}
 
       </Image>
     )
@@ -134,6 +145,12 @@ const styles = StyleSheet.create({
     fontFamily: 'SnellRoundhand-Black',
     fontSize: 80,
     color: '#00D9C0',
+  },
+
+  img : {
+    width: 50,
+    height: 'auto',
+    flex: 1
   }
 
 
