@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
 
   img : {
-    width: 50,
+    width: 30,
     height: 'auto',
     flex: 1
   }

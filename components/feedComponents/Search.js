@@ -101,8 +101,9 @@ const styles = StyleSheet.create({
     },
 
     img : {
-      width: 50,
+      width: 30,
       height: 'auto',
+      paddingTop: 10,
       flex: 1
     }
 

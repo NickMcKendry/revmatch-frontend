@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
 
   img : {
-    width: 45,
+    width: 35,
     height: 'auto',
     flex: 1
   }

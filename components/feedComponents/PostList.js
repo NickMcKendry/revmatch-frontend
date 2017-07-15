@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
 
   userText : {
-    marginTop: 12,
+    alignSelf: 'center',
     fontSize: 15,
     fontFamily: 'Futura-MediumItalic',
 
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   postCard: {
     flex: 1,
     position: 'relative',
-    marginBottom: 18,
+    marginBottom: 5,
+    paddingTop: 8
   },
 
   imgContainer : {
