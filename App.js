@@ -2,8 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS, ActivityIndicator } from 'react-native';
 import LogIn from './components/LogIn'
 import Header from './components/Header'
-import { Provider } from 'react-redux'
-import store from './redux/store'
+
 import Root from './Root'
 
 
@@ -17,7 +16,6 @@ export default class App extends React.Component {
 
     return(
       <View style={styles.container}>
-        <Provider store={store}>
           <NavigatorIOS
             initialRoute = {{
               component: LogIn,
@@ -26,7 +24,6 @@ export default class App extends React.Component {
             }}
             style={{flex: 11}}
           />
-        </Provider>
     </View>
     )
   }
