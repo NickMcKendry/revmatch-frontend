@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS, ScrollView } from 'react-native';
 
+import { connect } from 'react-redux'
+import { fetchMyPosts } from './feedComponents/postComponents/actions'
+
 import { PostApi } from '../constants/api'
 import PostList from './feedComponents/postComponents/PostList'
 
 import LoadingScreen from './LoadingScreen'
 import SmallHeader from './feedComponents/SmallHeader'
 
-const postApi = new PostApi()
+
+@connect(
+  state => ({
+    posts: state.posts
+  }),
+  { fetchMyPosts }
+)
 
 export default class Feed extends Component {
 
-  static defaultProps = {
-    postApi
-  }
+
 
   static navigationOptions = {
     header: () => (
@@ -31,20 +38,26 @@ export default class Feed extends Component {
   }
 
   async componentDidMount(){
-    this.setState({ loading: true })
-    console.log('postApi ', postApi);
-    const posts = await this.props.postApi.fetchPosts()
-    console.log('posts var', posts);
-    this.setState({ loading: false, posts })
+    this.props.fetchMyPosts()
   }
 
   render(){
+    const {
+      posts: {
+        isFetched,
+        data,
+        error
+      }
+    } = this.props
 
-    if(this.state.loading){
-      console.log(this.state.loading);
+    if(!isFetched){
         return <LoadingScreen />
-    } else {
-      console.log('this.state.posts', this.state);
+    } else if(error.on) {
+      return (
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      )
     }
 
 
@@ -52,7 +65,7 @@ export default class Feed extends Component {
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.postContainer}>
-            <PostList posts={this.state.posts} />
+            <PostList posts={data} />
           </View>
         </ScrollView>
       </View>

@@ -11,7 +11,14 @@ import SmallHeader from './SmallHeader'
 import LoadingScreen from '../LoadingScreen'
 
 
-@connect(null, { fetchMyMeetups })
+@connect(
+  state => ({
+    myMeetups: state.meetups
+  }),
+  { fetchMyMeetups }
+)
+
+
 export default class Meetups extends Component {
 
   static navigationOptions = {
@@ -31,11 +38,24 @@ export default class Meetups extends Component {
 
 
   render(){
-    if(this.state.loading){
-      console.log(this.state.loading);
+    const {
+      myMeetups: {
+        isFetched,
+        data,
+        error
+      }
+    } = this.props
+
+
+    if(!isFetched){
+      console.log('data');
         return <LoadingScreen />
-    } else {
-      console.log('meetups', this.state.meetups);
+    } else if(error.on) {
+      return(
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      )
     }
 
 
@@ -46,7 +66,7 @@ export default class Meetups extends Component {
           <Text style={styles.titleText}>Meetups</Text>
         </View>
         <View style={styles.bottomContainer}>
-          <MeetupList meetups={this.state.meetups} />
+          <MeetupList meetups={data} />
         </View>
       </Image>
     )

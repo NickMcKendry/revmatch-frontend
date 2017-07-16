@@ -1,10 +1,9 @@
 import {
-  FETCH_MY_MEETUPS
+  FETCH_MY_POSTS
 } from './actions'
 
-
 const INITIAL_STATE = {
-  myMeetups: {
+  posts: {
     data: [],
     isFetched: false,
     error: {
@@ -17,9 +16,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   console.log('action', action.payload);
   switch(action.type) {
-    case `${FETCH_MY_MEETUPS}_PENDING` :
+    case `${FETCH_MY_POSTS}_PENDING` :
       return INITIAL_STATE;
-    case `${FETCH_MY_MEETUPS}_FULFILLED` :
+    case `${FETCH_MY_POSTS}_FULFILLED` :
     console.log('this is data', action.payload)
 
       return {
@@ -30,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
           message: null
         }
       };
-    case `${FETCH_MY_MEETUPS}_REJECTED` :
+    case `${FETCH_MY_POSTS}_REJECTED` :
     return (
       data: [],
       isFetched: false,
