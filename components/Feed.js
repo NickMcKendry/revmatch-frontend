@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS, ScrollView } from 'react-native';
 
 import { PostApi } from '../constants/api'
-import PostList from './feedComponents/PostList'
+import PostList from './feedComponents/postComponents/PostList'
 
 import LoadingScreen from './LoadingScreen'
 import SmallHeader from './feedComponents/SmallHeader'

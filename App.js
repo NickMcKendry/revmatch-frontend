@@ -5,6 +5,8 @@ import Header from './components/Header'
 
 import Root from './Root'
 
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 
 export default class App extends React.Component {
@@ -16,6 +18,7 @@ export default class App extends React.Component {
 
     return(
       <View style={styles.container}>
+        <Provider store={store}>
           <NavigatorIOS
             initialRoute = {{
               component: LogIn,
@@ -24,6 +27,7 @@ export default class App extends React.Component {
             }}
             style={{flex: 11}}
           />
+        </Provider>
     </View>
     )
   }

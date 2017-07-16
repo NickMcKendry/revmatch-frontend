@@ -12,11 +12,16 @@ class MeetupApi {
   }
 
   async fetchGroupMeetups(){
-    console.log(this);
-    const { data } = await axios.get(this.path)
-    console.log('apicall', data);
-    console.log('yoi', data.meetups);
-    return data.meetups
+    try{
+      console.log(this);
+      const { data } = await axios.get(this.path)
+      console.log('apicall', data);
+      console.log('yoi', data.meetups);
+      return data.meetups
+    } catch(e) {
+      console.log(e, 'error fetching group meetups');
+    }
+
   }
 
 }
@@ -28,12 +33,17 @@ class PostApi{
   }
 
   async fetchPosts(){
-    console.log(this);
-    const { data } = await axios.get(this.path)
-    console.log('apicall', data);
-    console.log('yoi 2', data.posts);
+    try{
+      console.log(this);
+      const { data } = await axios.get(this.path)
+      console.log('apicall', data);
+      console.log('yoi 2', data.posts);
 
-    return data.posts
+      return data.posts
+    } catch(e){
+      console.log(e , 'error fetching posts');
+    }
+
   }
 }
 

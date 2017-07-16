@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from 'react-native';
 
+import { connect } from 'react-redux'
+
 import { MeetupApi } from '../../constants/api'
 import MeetupList from './meetupComponents/MeetupList'
 
+import { fetchMyMeetups } from './meetupComponents/actions'
 import SmallHeader from './SmallHeader'
 import LoadingScreen from '../LoadingScreen'
 
-const meetupApi = new MeetupApi();
 
+@connect(null, { fetchMyMeetups })
 export default class Meetups extends Component {
-
-  static defaultProps = {
-    meetupApi
-  }
 
   static navigationOptions = {
     header: () => (
@@ -26,17 +25,8 @@ export default class Meetups extends Component {
 
   }
 
-  state = {
-    loading: false,
-    meetups: []
-  }
-
   async componentDidMount() {
-    this.setState({ loading: true })
-    const meetups =  await this.props.meetupApi.fetchGroupMeetups()
-    console.log('meetups var', meetups);
-    this.setState({ loading: false, meetups })
-    console.log('this.state',this.state);
+    this.props.fetchMyMeetups()
   }
 
 
