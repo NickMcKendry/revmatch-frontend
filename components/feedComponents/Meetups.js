@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, NavigatorIOS } from 'react-native';
+
+import { Button } from 'native-base'
 
 import { connect } from 'react-redux'
 
@@ -25,6 +27,8 @@ export default class Meetups extends Component {
     header: () => (
       <SmallHeader />
     ),
+
+    
 
     tabBarIcon:  () => (
         <Image source={require('../../Icons/Meetups-Nav.png')} style={styles.img}></Image>
