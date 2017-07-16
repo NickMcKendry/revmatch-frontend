@@ -6,7 +6,7 @@ import Login from '../components/LogIn'
 import Meetups from '../components/feedComponents/Meetups'
 import Profile from '../components/feedComponents/Profile'
 import Search from '../components/feedComponents/Search'
-
+import Create from '../components/feedComponents/Create'
 
 export default TabNavigator({
   Feed: {
@@ -23,6 +23,10 @@ export default TabNavigator({
 
   Meetups: {
     screen: Meetups
+  },
+
+  Create: {
+    screen: Create
   }
 }, {
   swipeEnabled: true,
