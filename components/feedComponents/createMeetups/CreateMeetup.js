@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { FormLabel, FormInput, Button } from 'react-native-elements'
+import DateTimePicker from 'react-native-modal-datetime-picker'
+
+import moment from 'moment'
 
 export default class CreateMeetup extends Component {
 
@@ -14,6 +17,27 @@ export default class CreateMeetup extends Component {
       color: '#00D9C0'
     },
 
+  }
+
+  state = {
+    isDateTimePickerVisible: false
+  }
+
+  _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true })
+
+  _handleDateTimePicker = () => this.setState({ isDateTimePickerVisible: false })
+
+  _handleDatePicked = (date) => {
+    this.setState({ date  })
+    this._handleDateTimePicker()
+  }
+
+  _checkTitle() {
+    const { date } = this.state
+    if(date > moment()){
+      return moment(date).format('MMMM Do YYYY, h:mm a')
+    }
+    return 'Pick Event Date'
   }
 
   render(){
@@ -50,8 +74,9 @@ export default class CreateMeetup extends Component {
           </View>
           <View style={styles.item}>
             <Button
+              onPress={this._showDateTimePicker}
               backgroundColor = '#FCBA04'
-              title = "Pick a date for your event"
+              title = {this._checkTitle()}
               raised
               fontFamily = 'Futura'
             />
@@ -65,6 +90,12 @@ export default class CreateMeetup extends Component {
             />
           </View>
         </View>
+        <DateTimePicker
+          isVisible={this.state.isDateTimePickerVisible}
+          onConfirm={this._handleDatePicked}
+          onCancel={this._handleDateTimePicker}
+          mode = 'datetime'
+        />
       </View>
     )
   }
