@@ -3,6 +3,9 @@ import { View, Text, StyleSheet } from 'react-native'
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
+import { connect } from 'react-redux'
+import { createMeetup } from './actions'
+
 import CreateMeetupForm from './components/CreateMeetupForm'
 
 import { MeetupApi } from '../../../constants/api'
@@ -13,7 +16,12 @@ import moment from 'moment'
 const meetupApi = new MeetupApi()
 
 
-
+@connect(
+  state => ({
+    meetup: state.createMeetup
+  }),
+  { createMeetup }
+)
 export default class CreateMeetup extends Component {
 
   static navigationOptions = {
@@ -32,10 +40,6 @@ export default class CreateMeetup extends Component {
   state = {
     isDateTimePickerVisible: false,
     date: moment(),
-    title: '',
-    location: '',
-    meetuptype: '',
-    description: ''
   }
 
   _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true })
