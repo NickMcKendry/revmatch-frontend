@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import { FormLabel, FormInput, Button } from 'react-native-elements'
 
 export default class CreateMeetup extends Component {
 
@@ -17,9 +18,79 @@ export default class CreateMeetup extends Component {
 
   render(){
     return (
-      <View>
-        <Text>Create Meetup</Text>
+      <View style={styles.root}>
+        <View style={styles.container}>
+          <View style={styles.item}>
+            <FormLabel fontFamily = 'Futura' >Title</FormLabel>
+            <FormInput
+              selectionColor = '#00D9C0'
+              type="text"
+            />
+          </View>
+          <View style={styles.item}>
+            <FormLabel fontFamily = 'Futura' >Location</FormLabel>
+            <FormInput
+              selectionColor = '#00D9C0'
+              type="text"
+            />
+          </View>
+          <View style={styles.item}>
+            <FormLabel fontFamily = 'Futura' >Event Type</FormLabel>
+            <FormInput
+              selectionColor = '#00D9C0'
+              type="text"
+            />
+          </View>
+          <View style={styles.item}>
+            <FormLabel fontFamily = 'Futura' >Description</FormLabel>
+            <FormInput
+              selectionColor = '#00D9C0'
+              type="textarea" multiline={true}
+            />
+          </View>
+          <View style={styles.item}>
+            <Button
+              backgroundColor = '#FCBA04'
+              title = "Pick a date for your event"
+              raised
+              fontFamily = 'Futura'
+            />
+          </View>
+          <View style={styles.buttonCreate}>
+            <Button
+              title = "Create Event"
+              raised
+              fontFamily = 'Futura'
+              backgroundColor = '#00D9C0'
+            />
+          </View>
+        </View>
       </View>
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#A1A6AB'
+  },
+
+  container: {
+    flex: 1,
+    width: '90%'
+  },
+
+  item : {
+    marginVertical: '2%'
+  },
+
+  buttonCreate : {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: '10%'
+  }
+})

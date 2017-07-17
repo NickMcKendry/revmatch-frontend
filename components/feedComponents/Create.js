@@ -26,7 +26,7 @@ export default class Create extends Component {
     return(
       <View style={styles.container}>
         <TouchableHighlight style={styles.tophalf}  onPress={() => this.props.navigation.navigate('CreatePosts')}>
-          <Image style={styles.postImg} source={require('../../Icons/apbg4.png')}>
+          <Image style={styles.postImg} source={require('../../Icons/apbg.png')}>
             <Text style={styles.postText}>Add a new post!</Text>
           </Image>
         </TouchableHighlight>
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 5,
-    borderColor: '#00D9C0'
+    borderColor: '#00D9C0',
+    marginTop: 3
   },
 
   bottomhalf: {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     color: '#00D9C0',
     backgroundColor: 'transparent',
     alignSelf: 'center',
-    bottom: 50,
+    bottom: 90,
     fontSize: 40,
     fontFamily: 'SnellRoundhand-Black',
   },
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
 
   postImg : {
     flex: 1,
-    top: 82,
+    top: 135,
     overflow: 'visible'
   }
 })
