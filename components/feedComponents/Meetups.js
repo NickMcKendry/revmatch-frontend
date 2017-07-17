@@ -36,7 +36,6 @@ export default class Meetups extends Component {
     this.props.fetchMyMeetups()
   }
 
-
   render(){
     const {
       myMeetups: {

@@ -17,6 +17,10 @@ export default TabNavigator({
     screen: Search
   },
 
+  Add: {
+    screen: Create
+  },
+
   Profile: {
     screen: Profile
   },
@@ -25,9 +29,7 @@ export default TabNavigator({
     screen: Meetups
   },
 
-  Create: {
-    screen: Create
-  }
+
 }, {
   swipeEnabled: true,
   animationEnabled: true,
