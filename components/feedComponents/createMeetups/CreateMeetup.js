@@ -6,14 +6,11 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 import { connect } from 'react-redux'
 import { createMeetup } from './actions'
 
+import LoadingScreen from '../../LoadingScreen'
+
 import CreateMeetupForm from './components/CreateMeetupForm'
 
-import { MeetupApi } from '../../../constants/api'
-
 import moment from 'moment'
-
-
-const meetupApi = new MeetupApi()
 
 
 @connect(
@@ -53,9 +50,9 @@ export default class CreateMeetup extends Component {
 
   _checkIfButtonSubmitDisabled() {
     const today = moment()
-    const { title, location, meetuptype, description, date } = this.state
+    const { date } = this.state
 
-    if(title.length > 1 && location.length > 1 && meetuptype.length > 1 && description.length > 1 && date > moment()){
+    if(date > moment()){
       return false
     } else {
 
@@ -63,24 +60,10 @@ export default class CreateMeetup extends Component {
   }
 }
 
-_createMeetup = async () => {
-  const { title, location, meetuptype, description, date } = this.state
-  console.log('title', title);
-  console.log('location', location);
-  console.log('meetuptype', meetuptype);
-  console.log('description', description);
-  console.log('date', date);
-
-
-  const res = await meetupApi.createGroupMeetups({
-    title,
-    location,
-    meetuptype,
-    description,
-    date
-  })
-
-  console.log(res);
+_createMeetup = async (values) => {
+  console.log(values);
+  await this.props.createMeetup(values)
+  this.props.navigation.goBack()
 }
 
   _checkTitle() {
@@ -91,18 +74,24 @@ _createMeetup = async () => {
     return 'Pick Event Date'
   }
 
-  _changeTitle = title => this.setState({ title })
-
-  _changeDescription = description => this.setState({ description })
-
-  _changeLocation = location => this.setState({ location })
-
-  _changeEventType = meetuptype => this.setState({ meetuptype })
-
-
-
   render(){
-    console.log(this.state);
+    const {
+      meetup
+    } = this.props
+
+    if(meetup.isLoading){
+      return(
+        <View style={styles.root}>
+          <LoadingScreen />
+        </View>
+      )
+    } else if( meetup.error.on ){
+      return(
+        <View style={styles.root}>
+          <Text>{meetup.error.message}</Text>
+        </View>
+      )
+    }
     return (
       <View style={styles.root}>
         <CreateMeetupForm

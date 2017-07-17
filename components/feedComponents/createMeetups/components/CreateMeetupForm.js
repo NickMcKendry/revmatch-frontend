@@ -36,7 +36,7 @@ const CreateMeetupForm = ({
     />
     <Field
       component={TextInputWithValidation}
-      name="eventtype"
+      name="meetuptype"
       label="Event Type"
       selectionColor="#00D9C0"
       containerStyle={styles.item}
@@ -65,7 +65,7 @@ const CreateMeetupForm = ({
         fontFamily = 'Futura'
         backgroundColor = '#00D9C0'
         disabled = {invalid || submitting}
-        onSubmit={handleSubmit(createMeetup)}
+        onPress = {handleSubmit(createMeetup)}
       />
     </View>
   </View>
