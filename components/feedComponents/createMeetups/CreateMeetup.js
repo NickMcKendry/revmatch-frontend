@@ -3,7 +3,16 @@ import { View, Text, StyleSheet } from 'react-native'
 import { FormLabel, FormInput, Button } from 'react-native-elements'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
+import CreateMeetupForm from './components/CreateMeetupForm'
+
+import { MeetupApi } from '../../../constants/api'
+
 import moment from 'moment'
+
+
+const meetupApi = new MeetupApi()
+
+
 
 export default class CreateMeetup extends Component {
 
@@ -14,23 +23,61 @@ export default class CreateMeetup extends Component {
     },
 
     headerTitleStyle: {
-      color: '#00D9C0'
+      color: '#00D9C0',
+
     },
 
   }
 
   state = {
-    isDateTimePickerVisible: false
+    isDateTimePickerVisible: false,
+    date: moment(),
+    title: '',
+    location: '',
+    meetuptype: '',
+    description: ''
   }
 
   _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true })
 
   _handleDateTimePicker = () => this.setState({ isDateTimePickerVisible: false })
 
-  _handleDatePicked = (date) => {
+  _handleDatePicked = date => {
     this.setState({ date  })
     this._handleDateTimePicker()
   }
+
+  _checkIfButtonSubmitDisabled() {
+    const today = moment()
+    const { title, location, meetuptype, description, date } = this.state
+
+    if(title.length > 1 && location.length > 1 && meetuptype.length > 1 && description.length > 1 && date > moment()){
+      return false
+    } else {
+
+    return true
+  }
+}
+
+_createMeetup = async () => {
+  const { title, location, meetuptype, description, date } = this.state
+  console.log('title', title);
+  console.log('location', location);
+  console.log('meetuptype', meetuptype);
+  console.log('description', description);
+  console.log('date', date);
+
+
+  const res = await meetupApi.createGroupMeetups({
+    title,
+    location,
+    meetuptype,
+    description,
+    date
+  })
+
+  console.log(res);
+}
 
   _checkTitle() {
     const { date } = this.state
@@ -40,61 +87,35 @@ export default class CreateMeetup extends Component {
     return 'Pick Event Date'
   }
 
+  _changeTitle = title => this.setState({ title })
+
+  _changeDescription = description => this.setState({ description })
+
+  _changeLocation = location => this.setState({ location })
+
+  _changeEventType = meetuptype => this.setState({ meetuptype })
+
+
+
   render(){
+    console.log(this.state);
     return (
       <View style={styles.root}>
-        <View style={styles.container}>
-          <View style={styles.item}>
-            <FormLabel fontFamily = 'Futura' >Title</FormLabel>
-            <FormInput
-              selectionColor = '#00D9C0'
-              type="text"
-            />
-          </View>
-          <View style={styles.item}>
-            <FormLabel fontFamily = 'Futura' >Location</FormLabel>
-            <FormInput
-              selectionColor = '#00D9C0'
-              type="text"
-            />
-          </View>
-          <View style={styles.item}>
-            <FormLabel fontFamily = 'Futura' >Event Type</FormLabel>
-            <FormInput
-              selectionColor = '#00D9C0'
-              type="text"
-            />
-          </View>
-          <View style={styles.item}>
-            <FormLabel fontFamily = 'Futura' >Description</FormLabel>
-            <FormInput
-              selectionColor = '#00D9C0'
-              type="textarea" multiline={true}
-            />
-          </View>
-          <View style={styles.item}>
-            <Button
-              onPress={this._showDateTimePicker}
-              backgroundColor = '#FCBA04'
-              title = {this._checkTitle()}
-              raised
-              fontFamily = 'Futura'
-            />
-          </View>
-          <View style={styles.buttonCreate}>
-            <Button
-              title = "Create Event"
-              raised
-              fontFamily = 'Futura'
-              backgroundColor = '#00D9C0'
-            />
-          </View>
-        </View>
+        <CreateMeetupForm
+          createMeetup={this._createMeetup}
+          showDateTimePicker={this._showDateTimePicker}
+          checkTitle={this._checkTitle()}
+          changeDescription={this._changeDescription}
+          changeLocation={this._changeLocation}
+          changeEventType={this._changeEventType}
+         />
+
         <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this._handleDatePicked}
           onCancel={this._handleDateTimePicker}
           mode = 'datetime'
+          minimumDate = {moment()._d}
         />
       </View>
     )
@@ -107,21 +128,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#A1A6AB'
-  },
-
-  container: {
-    flex: 1,
-    width: '90%'
-  },
-
-  item : {
-    marginVertical: '2%'
-  },
-
-  buttonCreate : {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: '10%'
   }
 })
