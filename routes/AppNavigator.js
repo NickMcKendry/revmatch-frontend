@@ -9,7 +9,7 @@ import Navigator from './Navigator'
 @connect(
   state => ({
     navigation: state.navigation,
-    user: state.user
+    auth: state.auth
   })
 )
 
@@ -18,9 +18,19 @@ export default class AppNavigator extends Component {
 
   }
   render(){
-    return(
 
-    )
+    const navigation = addNavigationHelpers({
+      dispatch: this.props.dispatch,
+      state: this.props.navigation,
+    })
+
+    if(this.props.user.loggedIn){
+      return <Navigator navigation={navigation} />
+    }
+
+    return <Login />
   }
 
 }
+
+export const router = Navigator.router
