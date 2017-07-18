@@ -24,11 +24,11 @@ export default class AppNavigator extends Component {
       state: this.props.navigation,
     })
 
-    if(this.props.user.loggedIn){
+    if(this.props.auth.loggedIn){
       return <Navigator navigation={navigation} />
     }
 
-    return <Login />
+    return <LogIn />
   }
 
 }

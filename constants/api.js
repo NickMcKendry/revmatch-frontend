@@ -19,7 +19,7 @@ class MeetupApi {
       console.log('yoi', data.meetups);
       return data.meetups
     } catch(e) {
-      console.log(e, 'error fetching group meetups');
+      throw e
     }
 
   }
@@ -30,7 +30,7 @@ class MeetupApi {
       console.log(res);
       return res
     } catch(e){
-      console.log(e, 'error creating meetup');
+      throw e
     }
   }
 
@@ -51,7 +51,7 @@ class PostApi{
 
       return data.posts
     } catch(e){
-      console.log(e , 'error fetching posts');
+      throw e
     }
 
   }
@@ -61,3 +61,22 @@ export {
   MeetupApi,
   PostApi
 }
+
+
+class UserApi{
+  constructor(){
+    this.path = '/users'
+  }
+
+  async logIn(args){
+    try{
+      const { data } = await axios.post(`${this.path}/auth0`, args)
+
+      return data
+    } catch(e) {
+      throw e
+    }
+  }
+}
+
+export const User = new UserApi()

@@ -1,5 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, NavigatorIOS, TouchableOpacity, Alert } from 'react-native';
+import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { Facebook, Google } from 'expo'
+
+import { connect } from 'react-redux'
+
+import { login } from './auth/actions'
+
+import fbConfig from '../constants/fbConfig'
+import googleConfig from '../constants/googleConfig'
 
 
 
@@ -7,9 +16,12 @@ import Feed from './Feed'
 import Header from './Header'
 import SignUp from './SignUp'
 import Root from '../Root'
+import LoadingScreen from './LoadingScreen'
 
 
-
+@connect(state => ({
+  isLoading: state.auth.isLoading
+}), {login})
 export default class LogIn extends React.Component {
 
 
@@ -30,19 +42,65 @@ export default class LogIn extends React.Component {
     })
   }
 
+_onLoginPress = name => {
+  if(name === 'facebook') {
+    this._loginWithFacebook()
+  } else {
+    this._loginWithGoogle()
+  }
+}
+
+async _loginWithFacebook(){
+  const { type, token } = await Facebook.logInWithReadPermissionsAsync(fbConfig.APP_ID, {
+    permissions: ['public_profile', 'email' ]
+  })
+
+  if(type === 'success'){
+    this.props.login(token, 'facebook')
+  } else {
+    throw new Error('Something went wrong, try again!')
+  }
+
+}
+
+async _loginWithGoogle(){
+  try{
+    const result = await Google.logInAsync({
+      iosClientId: googleConfig.CLIENT_ID_IOS,
+      scope: ['profile', 'email']
+    })
+
+    if(result.type === 'success'){
+      this.props.login(result.accessToken, 'google')
+    } else {
+      console.log('failed');
+
+      return{ cancelled: true}
+    }
+  } catch(e){
+    throw e
+  }
+}
 
 
   render() {
 
+    if(this.props.isLoading){
+        return <LoadingScreen />
 
+    }
 
     return (
+
+
 
           <Image style={styles.background} source={require('./bg.png')}>
 
           <View style={styles.Login}>
 
             <Header />
+
+
 
             <TextInput
               placeholder="UserName"
@@ -55,6 +113,7 @@ export default class LogIn extends React.Component {
               title="Log In"
               color="#00D9C0"
               onPress={() => this.goToFeed()}
+              fontSize={30}
             />
 
           </View>
@@ -67,6 +126,15 @@ export default class LogIn extends React.Component {
             />
 
           </View>
+
+          <TouchableOpacity style={styles.facebookLogin} onPress={() => this._onLoginPress('facebook')}>
+            <Text style={styles.facebookText}>Connect</Text>
+            <MaterialCommunityIcons name="facebook" size={30} color="#3b5998" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.googleLogin} onPress={() => this._onLoginPress('google')}>
+            <Text style={styles.googleText}>Connect</Text>
+            <MaterialCommunityIcons name="google" size={30} color="#db3236" />
+          </TouchableOpacity>
         </Image>
 
 
@@ -83,6 +151,44 @@ const styles = StyleSheet.create({
 
   },
 
+  facebookLogin: {
+    backgroundColor: "#030301",
+    opacity: .9,
+    flexDirection: 'row',
+    width: '50%',
+    alignSelf: 'center',
+    bottom: 40,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    borderRadius: 25
+  },
+
+  googleLogin: {
+    backgroundColor: "#030301",
+    opacity: .9,
+    flexDirection: 'row',
+    width: '50%',
+    alignSelf: 'center',
+    bottom: 40,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    borderRadius: 25,
+    marginVertical: 5
+  },
+
+  facebookText: {
+    color: '#3b5998',
+    fontSize: 30,
+    fontFamily: 'Futura',
+    left: 10
+  },
+
+  googleText: {
+    color: '#db3236',
+    fontSize: 30,
+    fontFamily: 'Futura',
+    left: 10
+  },
 
 
   Login: {
@@ -134,7 +240,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#030301",
     opacity: 1,
     resizeMode: 'cover'
-  }
+  },
+
+
 
 
 
